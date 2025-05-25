@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Library Management System</h1>
+    <h2>Add a Book</h2>
+    <form action="{{ url_for('add_book') }}" method="POST">
+        <input type="text" name="book_id" placeholder="Book ID" required>
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="number" name="copies" placeholder="Copies" required>
+        <button type="submit">Add Book</button>
+    </form>
+    
+    <h2>Update a Book</h2>
+    <form action="{{ url_for('update_book') }}" method="POST">
+        <input type="text" name="book_id" placeholder="Book ID" required>
+        <input type="text" name="title" placeholder="New Title">
+        <input type="text" name="author" placeholder="New Author">
+        <input type="number" name="copies" placeholder="New Copies">
+        <button type="submit">Update Book</button>
+    </form>
+    
+    <h2>Delete a Book</h2>
+    <form action="{{ url_for('delete_book') }}" method="POST">
+        <input type="text" name="book_id" placeholder="Book ID" required>
+        <button type="submit">Delete Book</button>
+    </form>
+    
+    <h2>Check Out a Book</h2>
+    <form action="{{ url_for('check_out') }}" method="POST">
+        <input type="text" name="book_id" placeholder="Book ID" required>
+        <button type="submit">Check Out</button>
+    </form>
+    
+    <h2>Check In a Book</h2>
+    <form action="{{ url_for('check_in') }}" method="POST">
+        <input type="text" name="book_id" placeholder="Book ID" required>
+        <button type="submit">Check In</button>
+    </form>
+    
+    <h2>Available Books</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{ book['book_id'] }} - {{ book['title'] }} by {{ book['author'] }}, Copies: {{ book['copies'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
